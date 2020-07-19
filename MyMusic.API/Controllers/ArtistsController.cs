@@ -41,7 +41,7 @@ namespace MyMusic.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetArtistById(int id)
+        public async Task<ActionResult<Response<ArtistResource>>> GetArtistById(int id)
         {
             var response = new Response<ArtistResource>();
             if (id == 0)
@@ -70,7 +70,7 @@ namespace MyMusic.API.Controllers
         }
 
         [HttpPost("")]
-        public async Task<ActionResult> CreateArtist([FromBody] SaveArtistResource saveArtist)
+        public async Task<ActionResult<Response<ArtistResource>>> CreateArtist([FromBody] SaveArtistResource saveArtist)
         {
             var validator = new SaveArtistResourceValidator();
             var validatorResult = await validator.ValidateAsync(saveArtist);
@@ -99,7 +99,7 @@ namespace MyMusic.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateArtist(int id, [FromBody] SaveArtistResource saveArtist)
+        public async Task<ActionResult<Response<ArtistResource>>> UpdateArtist(int id, [FromBody] SaveArtistResource saveArtist)
         {
             var response = new Response<ArtistResource>();
             if (id == 0)
@@ -145,7 +145,7 @@ namespace MyMusic.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteArtist(int id)
+        public async Task<ActionResult<Response<ArtistResource>>> DeleteArtist(int id)
         {
             var response = new Response<ArtistResource>();
             if (id == 0)
